@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuisto <apuisto@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 13:54:23 by apuisto           #+#    #+#             */
-/*   Updated: 2025/03/21 13:54:25 by apuisto          ###   ########.fr       */
+/*   Created: 2024/10/28 16:41:51 by apuisto           #+#    #+#             */
+/*   Updated: 2024/10/28 16:41:54 by apuisto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include "../gnl/get_next_line.h"
-# include <stdio.h>
-# include <fcntl.h>
-
-typedef struct game_s
+char	*ft_strchr(const char *str, int chr)
 {
-	char	**map;
-	int		collectible_check;
-	int		player_check;
-	int		exit_check;
-	int		fd;
-
-
-}	t_game;
-
-#endif
+	while (*str != '\0')
+	{
+		if (*str == chr)
+			return ((char *)str);
+		str++;
+	}
+	if (chr == '\0')
+		return ((char *)str);
+	return (0);
+}

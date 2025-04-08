@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuisto <apuisto@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 13:54:23 by apuisto           #+#    #+#             */
-/*   Updated: 2025/03/21 13:54:25 by apuisto          ###   ########.fr       */
+/*   Created: 2024/10/28 16:41:30 by apuisto           #+#    #+#             */
+/*   Updated: 2024/10/28 16:41:33 by apuisto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include "../gnl/get_next_line.h"
-# include <stdio.h>
-# include <fcntl.h>
-
-typedef struct game_s
+int	ft_strlcat(char *dest, const char *src, size_t s)
 {
-	char	**map;
-	int		collectible_check;
-	int		player_check;
-	int		exit_check;
-	int		fd;
+	size_t	pos;
+	size_t	pos2;
 
-
-}	t_game;
-
-#endif
+	pos = 0;
+	pos2 = 0;
+	if (s <= 0)
+		return (ft_strlen(src));
+	while (dest[pos] && pos < s)
+		pos++;
+	while (src[pos2] && (pos + pos2 + 1) < s)
+	{
+		dest[pos + pos2] = src[pos2];
+		pos2++;
+	}
+	if (pos < s)
+		dest[pos + pos2] = '\0';
+	return (pos + ft_strlen(src));
+}

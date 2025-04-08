@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuisto <apuisto@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 13:54:23 by apuisto           #+#    #+#             */
-/*   Updated: 2025/03/21 13:54:25 by apuisto          ###   ########.fr       */
+/*   Created: 2024/10/28 16:42:47 by apuisto           #+#    #+#             */
+/*   Updated: 2024/10/28 16:42:50 by apuisto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
+#include <stdio.h>
 
-# include "../libft/libft.h"
-# include "../gnl/get_next_line.h"
-# include <stdio.h>
-# include <fcntl.h>
-
-typedef struct game_s
+void	*ft_memchr(const void *str, int c, size_t n)
 {
-	char	**map;
-	int		collectible_check;
-	int		player_check;
-	int		exit_check;
-	int		fd;
+	const char	*sr;
+	size_t		src;
 
-
-}	t_game;
-
-#endif
+	src = 0;
+	sr = (const char *)str;
+	while (src < n)
+	{
+		if (*sr == c)
+			return ((void *)sr);
+		src++;
+		sr++;
+	}
+	return (0);
+}

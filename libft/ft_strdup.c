@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuisto <apuisto@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 13:54:23 by apuisto           #+#    #+#             */
-/*   Updated: 2025/03/21 13:54:25 by apuisto          ###   ########.fr       */
+/*   Created: 2024/11/06 17:35:16 by apuisto           #+#    #+#             */
+/*   Updated: 2024/11/06 17:35:17 by apuisto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include "../gnl/get_next_line.h"
-# include <stdio.h>
-# include <fcntl.h>
-
-typedef struct game_s
+char	*ft_strdup(const char *s)
 {
-	char	**map;
-	int		collectible_check;
-	int		player_check;
-	int		exit_check;
-	int		fd;
+	size_t		i;
+	char		*ret;
 
-
-}	t_game;
-
-#endif
+	i = 0;
+	ret = (char *)malloc(sizeof(*s) * ft_strlen(s) + 1);
+	if (!ret)
+		return (NULL);
+	while (s[i] != '\0')
+	{
+		ret[i] = s[i];
+		i++;
+	}
+	ret[i] = 0;
+	return (ret);
+}

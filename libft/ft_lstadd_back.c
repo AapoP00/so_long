@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuisto <apuisto@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 13:54:23 by apuisto           #+#    #+#             */
-/*   Updated: 2025/03/21 13:54:25 by apuisto          ###   ########.fr       */
+/*   Created: 2024/11/13 12:05:59 by apuisto           #+#    #+#             */
+/*   Updated: 2024/11/13 12:06:00 by apuisto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include "../gnl/get_next_line.h"
-# include <stdio.h>
-# include <fcntl.h>
-
-typedef struct game_s
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	char	**map;
-	int		collectible_check;
-	int		player_check;
-	int		exit_check;
-	int		fd;
+	t_list	*back;
 
-
-}	t_game;
-
-#endif
+	back = ft_lstlast(*lst);
+	if (!back)
+		*lst = new;
+	else
+		back->next = new;
+}

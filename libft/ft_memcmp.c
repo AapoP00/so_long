@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuisto <apuisto@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 13:54:23 by apuisto           #+#    #+#             */
-/*   Updated: 2025/03/21 13:54:25 by apuisto          ###   ########.fr       */
+/*   Created: 2024/10/28 16:43:02 by apuisto           #+#    #+#             */
+/*   Updated: 2024/10/28 16:43:06 by apuisto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include "../gnl/get_next_line.h"
-# include <stdio.h>
-# include <fcntl.h>
-
-typedef struct game_s
+int	ft_memcmp(const void *str1, const void *str2, size_t n)
 {
-	char	**map;
-	int		collectible_check;
-	int		player_check;
-	int		exit_check;
-	int		fd;
+	size_t		nr;
+	const char	*sr1;
+	const char	*sr2;
 
-
-}	t_game;
-
-#endif
+	nr = 0;
+	sr1 = (const char *)str1;
+	sr2 = (const char *)str2;
+	while (nr < n)
+	{
+		if (sr1[nr] != sr2[nr])
+			return ((unsigned char)sr1[nr] - (unsigned char)sr2[nr]);
+		nr++;
+	}
+	return (0);
+}

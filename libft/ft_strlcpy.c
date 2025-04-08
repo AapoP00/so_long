@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuisto <apuisto@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 13:54:23 by apuisto           #+#    #+#             */
-/*   Updated: 2025/03/21 13:54:25 by apuisto          ###   ########.fr       */
+/*   Created: 2024/10/28 16:41:06 by apuisto           #+#    #+#             */
+/*   Updated: 2024/10/28 16:41:09 by apuisto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include "../gnl/get_next_line.h"
-# include <stdio.h>
-# include <fcntl.h>
-
-typedef struct game_s
+int	ft_strlcpy(char *dest, const char *src, size_t s)
 {
-	char	**map;
-	int		collectible_check;
-	int		player_check;
-	int		exit_check;
-	int		fd;
+	size_t	pos;
+	char	*sc;
 
-
-}	t_game;
-
-#endif
+	pos = 0;
+	sc = (char *)src;
+	if (s > 0)
+	{
+		while (src[pos] && pos < (s - 1))
+		{
+			dest[pos] = sc[pos];
+			pos++;
+		}
+		dest[pos] = '\0';
+	}
+	while (src[pos])
+		pos++;
+	return (pos);
+}

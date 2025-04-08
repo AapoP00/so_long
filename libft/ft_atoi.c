@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuisto <apuisto@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 13:54:23 by apuisto           #+#    #+#             */
-/*   Updated: 2025/03/21 13:54:25 by apuisto          ###   ########.fr       */
+/*   Created: 2024/10/28 16:43:37 by apuisto           #+#    #+#             */
+/*   Updated: 2024/10/28 16:43:40 by apuisto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include "../gnl/get_next_line.h"
-# include <stdio.h>
-# include <fcntl.h>
-
-typedef struct game_s
+int	ft_atoi(const char *str)
 {
-	char	**map;
-	int		collectible_check;
-	int		player_check;
-	int		exit_check;
-	int		fd;
+	int	c;
+	int	pos;
+	int	ret;
 
-
-}	t_game;
-
-#endif
+	ret = 0;
+	c = 0;
+	pos = 1;
+	while ((str[c] == ' ') || (str[c] >= 9 && str[c] <= 13))
+		c++;
+	if (str[c] == '-' || str[c] == '+')
+	{
+		if (str[c] == '-')
+		{
+			pos = -1;
+		}
+		c++;
+	}
+	while (str[c] >= '0' && str[c] <= '9')
+	{
+		ret = ret * 10 + (str[c] - '0');
+		c++;
+	}
+	return (ret * pos);
+}
