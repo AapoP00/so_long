@@ -21,6 +21,8 @@
 typedef struct game_s
 {
 	char	**map;
+	char	*map_1_line;
+	int		full_len;
 	int		collectible_check;
 	int		player_check;
 	int		exit_check;

@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+#include <stdio.h>
 
-file_check(char *input)
+int	file_check(char *input)
 {
 	int		len;
 	int		pos;
@@ -36,26 +37,50 @@ file_check(char *input)
 	return (0);
 }
 
+size_t		total_len(int fd)
+{
+	int 	bytes_read;
+	char	buffer[1];
+	int		total_len;
+
+	total_len = 0;
+	while(1)
+	{
+		bytes_read = read(fd, buffer, 1);
+		total_len += bytes_read;
+		if(bytes_read == 0)
+			break ; 
+	}
+	return (total_len);
+}
+
 int main(int argc, char **argv)
 {
 	t_game	game_data;
-	int		len;
+	int		one_line;
+	char	*the_line;
 
 	if (argc != 2)
 	{
 		write(1, "Invalid argument count.", 23);
-		return (-1);
 	}
-	if (file_check(argv[1]) == 1)
+	/*if (file_check(argv[1]) == 1)
 	{
 		write(1, "Invalid map name.", 17);
 		return (1);
-	}
+	}*/
 	game_data.fd = open(argv[1], O_RDONLY);
 	if (game_data.fd == -1)
 	{
 		write(1, "Invalid file.", 13);
-		return (1);
 	}
-
+	one_line = total_len(game_data.fd);
+	the_line = ft_calloc(sizeof(char), one_line + 1);
+	close(game_data.fd);
+	game_data.fd = open(argv[1], O_RDONLY);
+	read(game_data.fd, the_line, one_line);
+	game_data.map = ft_split(the_line, '\n');
+	printf("%i, %s", one_line, the_line);
+	free(the_line);
+	return(0);
 }
